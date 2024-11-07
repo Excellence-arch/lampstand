@@ -1,0 +1,142 @@
+[
+  {
+    "id": "1",
+    "title": "How to Use React Effectively",
+    "description": "A guide to using React hooks for efficient development.",
+    "contentType": "article",
+    "body": "React is a powerful JavaScript library for building user interfaces.\n\nIn this article, we'll cover best practices and tips for using React hooks effectively...\n\n### Why React?\nReact allows you to build complex UIs by managing state and side effects efficiently."
+  },
+  {
+    "id": "2",
+    "title": "Introduction to TypeScript",
+    "description": "Learn how TypeScript can help improve your JavaScript code.",
+    "contentType": "article",
+    "body": "TypeScript is a superset of JavaScript that adds static types.\n\nUsing TypeScript helps catch errors early and improve code quality.\n\n### Features of TypeScript\n1. Type Safety\n2. Better Refactoring\n3. Enhanced IDE Support"
+  },
+  {
+    "id": "3",
+    "title": "Understanding JavaScript Closures",
+    "description": "A deep dive into closures in JavaScript and how they work.",
+    "contentType": "article",
+    "body": "Closures are a powerful concept in JavaScript.\n\nThey allow functions to access variables from their parent scope, even after the parent function has finished executing.\n\n### Example of a Closure\n```javascript\nfunction outer() {\n  let counter = 0;\n  return function inner() {\n    counter++;\n    console.log(counter);\n  };\n}\nconst increment = outer();\nincrement(); // 1\nincrement(); // 2"
+  },
+  {
+    "id": "4",
+    "title": "Exploring the Power of Node.js",
+    "description": "Node.js allows JavaScript to run on the server side. Let's explore its power.",
+    "contentType": "article",
+    "body": "Node.js is built on the V8 JavaScript engine and allows you to write server-side code in JavaScript.\n\nIts non-blocking architecture makes it highly scalable.\n\n### Why Use Node.js?\n- High concurrency\n- Real-time capabilities\n- Fast execution"
+  },
+  {
+    "id": "5",
+    "title": "Introduction to Docker",
+    "description": "Learn the basics of Docker and how it can simplify your development workflow.",
+    "contentType": "article",
+    "body": "Docker enables developers to containerize applications, ensuring consistency across environments.\n\nIt works by packaging an application with all its dependencies into a container.\n\n### Docker Benefits\n- Portability\n- Isolation\n- Easy Scaling"
+  },
+  {
+    "id": "6",
+    "title": "Mastering Git and GitHub",
+    "description": "A guide to mastering Git and using GitHub effectively for version control.",
+    "contentType": "article",
+    "body": "Git is a distributed version control system, and GitHub is a platform for hosting Git repositories.\n\nTogether, they allow for efficient collaboration and versioning.\n\n### Git Commands\n1. git init\n2. git clone\n3. git commit"
+  },
+  {
+    "id": "7",
+    "title": "The Basics of Responsive Web Design",
+    "description": "Learn the fundamentals of responsive design and how to build mobile-friendly websites.",
+    "contentType": "article",
+    "body": "Responsive web design ensures that websites look great on all devices.\n\nBy using media queries and flexible grids, websites can adapt to various screen sizes.\n\n### Key Concepts\n- Fluid layouts\n- Media queries\n- Mobile-first design"
+  },
+  {
+    "id": "8",
+    "title": "Building RESTful APIs with Express.js",
+    "description": "Create a RESTful API using Express.js and Node.js for efficient communication between systems.",
+    "contentType": "article",
+    "body": "Express.js simplifies building APIs with Node.js.\n\nIt provides a minimal set of features to build powerful and scalable backends.\n\n### Setting Up Express.js\n1. Install dependencies\n2. Create routes\n3. Handle requests"
+  },
+  {
+    "id": "9",
+    "title": "What is Machine Learning?",
+    "description": "Explore the basics of machine learning and its real-world applications.",
+    "contentType": "article",
+    "body": "Machine learning is a subset of artificial intelligence that allows systems to learn from data.\n\nIt can be used for predictive analysis, pattern recognition, and more.\n\n### Types of Machine Learning\n- Supervised learning\n- Unsupervised learning\n- Reinforcement learning"
+  },
+  {
+    "id": "10",
+    "title": "A Guide to Building Single Page Applications (SPA)",
+    "description": "Learn how to build dynamic single-page applications using modern frameworks.",
+    "contentType": "article",
+    "body": "Single Page Applications (SPAs) offer faster and more dynamic user experiences.\n\nThey load content dynamically and don't require full page reloads.\n\n### SPA Frameworks\n- React\n- Angular\n- Vue"
+  },
+  {
+    "id": "11",
+    "title": "Introduction to GraphQL",
+    "description": "GraphQL is an alternative to REST. Learn how to use it for efficient data fetching.",
+    "contentType": "article",
+    "body": "GraphQL allows clients to request only the data they need.\n\nThis reduces over-fetching and can improve performance.\n\n### GraphQL Queries\n1. Query: Fetch data\n2. Mutation: Modify data\n3. Subscription: Real-time updates"
+  },
+  {
+    "id": "12",
+    "title": "Setting Up a Basic Webpack Configuration",
+    "description": "Learn how to configure Webpack to bundle your JavaScript and assets.",
+    "contentType": "article",
+    "body": "Webpack is a powerful bundler that helps optimize your assets.\n\nYou can configure it to handle various file types and minify your code.\n\n### Webpack Setup\n1. Install Webpack\n2. Create webpack.config.js\n3. Run the build command"
+  },
+  {
+    "id": "13",
+    "title": "JavaScript ES6 Features You Should Know",
+    "description": "Explore new features introduced in ES6 and how they improve JavaScript development.",
+    "contentType": "article",
+    "body": "ES6 (ECMAScript 2015) introduced many new features to JavaScript.\n\nThese features simplify development and make the language more powerful.\n\n### Notable ES6 Features\n- Arrow functions\n- Template literals\n- Destructuring"
+  },
+  {
+    "id": "14",
+    "title": "Building a Blog with Next.js",
+    "description": "Learn how to build a blog with Next.js for server-side rendering and static site generation.",
+    "contentType": "article",
+    "body": "Next.js is a React framework that provides server-side rendering out of the box.\n\nIt also enables static site generation and automatic code splitting.\n\n### Steps to Create a Blog\n1. Install Next.js\n2. Create pages\n3. Fetch data"
+  },
+  {
+    "id": "15",
+    "title": "The Importance of Web Accessibility",
+    "description": "Learn why web accessibility matters and how to make your website more accessible.",
+    "contentType": "article",
+    "body": "Web accessibility ensures that websites are usable by people with disabilities.\n\nThis can include screen readers, keyboard navigation, and more.\n\n### Accessibility Tips\n1. Use semantic HTML\n2. Provide alt text for images\n3. Test with assistive technologies"
+  },
+  {
+    "id": "16",
+    "title": "Implementing Authentication with JWT in Node.js",
+    "description": "Learn how to implement authentication using JSON Web Tokens (JWT) in your Node.js application.",
+    "contentType": "article",
+    "body": "JWTs are a compact and self-contained way to securely transmit information.\n\nThey can be used for stateless authentication in web applications.\n\n### Steps for Implementation\n1. Install dependencies\n2. Create a JWT generator\n3. Protect routes"
+  },
+  {
+    "id": "17",
+    "title": "Understanding Asynchronous JavaScript",
+    "description": "Master asynchronous programming in JavaScript with callbacks, promises, and async/await.",
+    "contentType": "article",
+    "body": "Asynchronous programming allows you to execute code without blocking the main thread.\n\nIn JavaScript, this can be achieved using callbacks, promises, or async/await.\n\n### Example with async/await\n```javascript\nasync function fetchData() {\n  const response = await fetch('url');\n  const data = await response.json();\n}\n```"
+  },
+  {
+    "id": "18",
+    "title": "Getting Started with MongoDB",
+    "description": "Learn how to use MongoDB, a NoSQL database, for your next project.",
+    "contentType": "article",
+    "body": "MongoDB is a NoSQL database that stores data in JSON-like format.\n\nIt is highly flexible and scalable, making it ideal for modern applications.\n\n### MongoDB Basics\n1. Create a database\n2. Insert documents\n3. Query data"
+  },
+  {
+    "id": "19",
+    "title": "Understanding Design Patterns in JavaScript",
+    "description": "Learn the most common design patterns used in JavaScript for cleaner, more maintainable code.",
+    "contentType": "article",
+    "body": "Design patterns are reusable solutions to common software design problems.\n\nThey help developers build more flexible and maintainable systems.\n\n### Common Patterns\n- Singleton\n- Factory\n- Observer"
+  },
+  {
+    "id": "20",
+    "title": "The Future of Web Development",
+    "description": "A look at the emerging trends and technologies shaping the future of web development.",
+    "contentType": "article",
+    "body": "Web development is constantly evolving, with new technologies and frameworks emerging all the time.\n\nFrom WebAssembly to JAMstack, the future looks bright.\n\n### Future Trends\n- Progressive Web Apps (PWAs)\n- Serverless architectures\n- AI and automation"
+  }
+]

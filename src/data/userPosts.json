@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1,
+    "content": "This is my first post!",
+    "createdAt": "2024-11-07T12:00:00Z",
+    "likes": 10,
+    "comments": [
+      { "id": 1, "text": "Great post!", "user": "Jane Doe" },
+      { "id": 2, "text": "I agree!", "user": "Alice Smith" }
+    ]
+  },
+  {
+    "id": 2,
+    "content": "Having a great day!",
+    "createdAt": "2024-11-07T14:00:00Z",
+    "likes": 5,
+    "comments": [{ "id": 3, "text": "Awesome!", "user": "Bob Johnson" }]
+  }
+]
