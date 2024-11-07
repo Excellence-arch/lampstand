@@ -14,7 +14,7 @@ const FeedItem: React.FC<FeedItemProps> = ({ content }) => {
       <div className="mt-4">
         {content.contentType === 'article' && (
           <Link
-            to={`/article/${content.id}`}
+            to={`/feed/${content.id}`}
             className="text-primary hover:underline"
           >
             Read Article

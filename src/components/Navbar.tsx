@@ -6,24 +6,31 @@ const Navbar: React.FC = () => {
     <nav className="bg-primary p-4 text-white shadow-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <Link
-          to="/"
+          to="/feed"
           className="text-2xl font-bold"
         >
           Lampstand
         </Link>
         <div className="space-x-4">
           <Link
+            to="/feed"
+            className="hover:text-green-300"
+          >
+            Home
+          </Link>
+          <Link
+            to="/post-article"
+            className='className="hover:text-green-300"'
+          >
+            Create Post
+          </Link>
+          <Link
             to="/profile"
             className="hover:text-green-300"
           >
             Profile
           </Link>
-          <Link
-            to="/feed"
-            className="hover:text-green-300"
-          >
-            Posts
-          </Link>
+
           <Link
             to="/settings"
             className="hover:text-green-300"
