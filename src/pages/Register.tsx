@@ -1,9 +1,11 @@
 // src/pages/Register.tsx
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import InputField from '../components/InputField'; // Import InputField component
 
 const Register: React.FC = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [fullName, setFullName] = useState('');
   const [password, setPassword] = useState('');
@@ -11,6 +13,11 @@ const Register: React.FC = () => {
   const [message, setMessage] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [redirectPath, setRedirectPath] = useState<string | null>(null);
+
+  useEffect(() => {
+    setRedirectPath(localStorage.getItem('redirectPath'));
+  }, []);
 
   // Email validation function for real-time checking
   const validateEmail = (email: string) => {
@@ -56,6 +63,12 @@ const Register: React.FC = () => {
     });
 
     const data = await response.json();
+    if (redirectPath) {
+      localStorage.removeItem('redirectPath');
+      navigate(`${redirectPath}`);
+    } else {
+      navigate('/profile');
+    }
     setMessage(data.message || 'Registration successful!');
   };
 

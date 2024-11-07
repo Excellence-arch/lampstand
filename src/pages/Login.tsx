@@ -1,5 +1,5 @@
 // src/pages/Login.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { apiFetch } from '../utils/api';
 import InputField from '../components/InputField';
@@ -12,6 +12,11 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [redirectPath, setRedirectPath] = useState<string | null>(null);
+
+  useEffect(() => {
+    setRedirectPath(localStorage.getItem('redirectPath'));
+  }, []);
 
   // Email validation function for real-time checking
   const validateEmail = (email: string) => {
@@ -30,8 +35,8 @@ const Login: React.FC = () => {
       return;
     }
 
-    localStorage.setItem('authToken', 'jkaskjsdkjsa');
-    localStorage.setItem('loggedIn', 'true');
+    // localStorage.setItem('authToken', 'jkaskjsdkjsa');
+    // localStorage.setItem('loggedIn', 'true');
     // navigate('/profile');
 
     try {
@@ -41,7 +46,12 @@ const Login: React.FC = () => {
       });
       setMessage(data.message || 'Login successful!');
       localStorage.setItem('authToken', data.token);
-      navigate('/profile');
+      if (redirectPath) {
+        localStorage.removeItem('redirectPath');
+        navigate(`${redirectPath}`);
+      } else {
+        navigate('/profile');
+      }
     } catch (error: unknown) {
       if (error instanceof Error) {
         setMessage(error.message);
@@ -88,7 +98,11 @@ const Login: React.FC = () => {
 
         <Message
           message={message}
-          isError={!!emailError || message.includes('error')}
+          isError={
+            !!emailError ||
+            message.includes('error') ||
+            message.includes('fetch')
+          }
         />
 
         <div className="text-center mt-6">

@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
             Profile
           </Link>
           <Link
-            to="/posts"
+            to="/feed"
             className="hover:text-green-300"
           >
             Posts
@@ -31,8 +31,12 @@ const Navbar: React.FC = () => {
             Settings
           </Link>
           <Link
-            to="/logout"
+            to="/"
             className="hover:text-green-300"
+            onClick={() => {
+              localStorage.removeItem('authToken');
+              localStorage.removeItem('loggenIn');
+            }}
           >
             Logout
           </Link>
