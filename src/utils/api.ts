@@ -1,4 +1,4 @@
-const BASE_URL = `http://localhost:8080/api`
+const BASE_URL = `https://lampstand-ucc2.onrender.com/api`
 //  || 'https://yourapiurl.com'; // Replace with your actual base URL
 
 type RequestOptions = Omit<RequestInit, 'headers'> & {
