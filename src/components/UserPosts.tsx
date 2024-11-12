@@ -1,9 +1,9 @@
 import React from 'react';
-import { Post } from '../types/Post';
+import { IPost } from '../types/Post';
 import PostCard from './PostCard';
 
 interface UserPostsProps {
-  posts: Post[];
+  posts: IPost[];
 }
 
 const UserPosts: React.FC<UserPostsProps> = ({ posts }) => {
@@ -15,7 +15,7 @@ const UserPosts: React.FC<UserPostsProps> = ({ posts }) => {
     <div>
       {posts.map((post) => (
         <PostCard
-          key={post.id}
+          key={post._id}
           post={post}
         />
       ))}

@@ -1,6 +1,6 @@
 // src/utils/api.ts
 
-const BASE_URL = 'https://yourapiurl.com'; // Update this to your actual base URL
+const BASE_URL = process.env.BASE_URL || 'https://yourapiurl.com'; // Update this to your actual base URL
 
 type RequestOptions = Omit<RequestInit, 'headers'> & {
   headers?: Record<string, string>;

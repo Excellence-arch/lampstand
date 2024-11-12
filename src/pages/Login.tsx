@@ -44,13 +44,14 @@ const Login: React.FC = () => {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
-      setMessage(data.message || 'Login successful!');
-      localStorage.setItem('authToken', data.token);
-      if (redirectPath) {
-        localStorage.removeItem('redirectPath');
-        navigate(`${redirectPath}`);
-      } else {
-        navigate('/profile');
+      if (data.message === 'success') {
+        localStorage.setItem('authToken', data.token);
+        if (redirectPath) {
+          localStorage.removeItem('redirectPath');
+          navigate(`${redirectPath}`);
+        } else {
+          navigate('/profile');
+        }
       }
     } catch (error: unknown) {
       if (error instanceof Error) {

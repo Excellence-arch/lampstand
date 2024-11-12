@@ -1,6 +1,16 @@
 export interface User {
-  id: number;
   name: string;
+  id: string;
   email: string;
-  profilePicture: string;
+  username: string;
+  verified: boolean;
+  avatar: string;
+}
+
+export interface IData {
+  message: string;
+}
+
+export interface IDataUser extends IData {
+  user: User;
 }

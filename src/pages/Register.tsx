@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import InputField from '../components/InputField'; // Import InputField component
+import { apiFetch } from '../utils/api';
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
@@ -56,20 +57,22 @@ const Register: React.FC = () => {
     }
 
     // Proceed with registration API call
-    const response = await fetch('/api/register', {
+    const data = await apiFetch(`/api/register`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, fullName, password }),
     });
-
-    const data = await response.json();
-    if (redirectPath) {
-      localStorage.removeItem('redirectPath');
-      navigate(`${redirectPath}`);
+    if (data.message === 'success') {
+      if (redirectPath) {
+        localStorage.removeItem('redirectPath');
+        navigate(`${redirectPath}`);
+      } else {
+        navigate('/login');
+      }
     } else {
-      navigate('/profile');
+      setMessage(data.message);
     }
-    setMessage(data.message || 'Registration successful!');
+
+    // setMessage(data.message || 'Registration successful!');
   };
 
   const handleGoogleSignIn = () => {

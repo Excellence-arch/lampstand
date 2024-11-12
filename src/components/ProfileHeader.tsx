@@ -9,7 +9,7 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user }) => {
   return (
     <div className="flex items-center mb-8">
       <img
-        src={user.profilePicture}
+        src={user.avatar}
         alt="Profile"
         className="w-24 h-24 rounded-full object-cover border-4 border-primary shadow-lg"
       />
