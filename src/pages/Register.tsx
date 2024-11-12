@@ -12,6 +12,7 @@ const Register: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [redirectPath, setRedirectPath] = useState<string | null>(null);
@@ -45,31 +46,45 @@ const Register: React.FC = () => {
   };
 
   const handleRegister = async () => {
+    setIsLoading(true);
     // Validate required fields before proceeding with API call
     if (!fullName || !email || !password || !confirmPassword) {
       setMessage('All fields are required');
+      setIsLoading(false);
       return;
     }
 
     // Validate password fields
     if (!validatePasswordFields()) {
+      setIsLoading(false);
       return;
     }
 
     // Proceed with registration API call
-    const data = await apiFetch(`/api/register`, {
-      method: 'POST',
-      body: JSON.stringify({ email, fullName, password }),
-    });
-    if (data.message === 'success') {
-      if (redirectPath) {
-        localStorage.removeItem('redirectPath');
-        navigate(`${redirectPath}`);
+    try {
+      const data = await apiFetch(`/account/register`, {
+        method: 'POST',
+        body: JSON.stringify({ email, name: fullName, password }),
+      });
+      console.log(data);
+      if (data.message === 'success') {
+        setIsLoading(false);
+        if (redirectPath) {
+          localStorage.removeItem('redirectPath');
+          navigate(`${redirectPath}`);
+        } else {
+          navigate('/login');
+        }
       } else {
-        navigate('/login');
+        setIsLoading(false);
+        setMessage(data.message);
       }
-    } else {
-      setMessage(data.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setMessage(error.message);
+      } else {
+        setMessage('An error occurred');
+      }
     }
 
     // setMessage(data.message || 'Registration successful!');
@@ -126,8 +141,9 @@ const Register: React.FC = () => {
         <button
           onClick={handleRegister}
           className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+          disabled={isLoading}
         >
-          Register
+          {isLoading ? 'Loading' : 'Register'}
         </button>
 
         {message && <p className="mt-4 text-center text-red-500">{message}</p>}

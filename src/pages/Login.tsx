@@ -40,7 +40,7 @@ const Login: React.FC = () => {
     // navigate('/profile');
 
     try {
-      const data = await apiFetch('/login', {
+      const data = await apiFetch('/account/login', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
