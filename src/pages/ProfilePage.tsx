@@ -38,11 +38,8 @@ const ProfilePage: React.FC = () => {
         });
 
         if (postData.message === 'success') {
-          if (postData.posts.length == 0) {
-            setError('No posts to display');
-          } else {
-            setPosts(postData.posts);
-          }
+          // console.log(postData);
+          setPosts(postData.posts);
         } else {
           setError('Failed to fetch posts');
         }

@@ -1,4 +1,4 @@
-const BASE_URL = `https://lampstand-ucc2.onrender.com/api`
+const BASE_URL = `${process.env.REACT_APP_BASE_URL}`;
 //  || 'https://yourapiurl.com'; // Replace with your actual base URL
 
 type RequestOptions = Omit<RequestInit, 'headers'> & {
@@ -20,7 +20,7 @@ export const apiFetch = async <T = any>(
   };
 
   try {
-    console.log(BASE_URL);
+    // console.log(BASE_URL);
     const response = await fetch(`${BASE_URL}${endpoint}`, {
       headers: combinedHeaders,
       ...restOptions,
