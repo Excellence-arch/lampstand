@@ -14,7 +14,7 @@ const PostArticle: React.FC = () => {
   const handleSubmit = async () => {
     // Convert editor content to raw JSON format
     const contentState = editorState.getCurrentContent();
-    const rawContent = convertToRaw(contentState);
+    const rawContent = JSON.stringify(convertToRaw(contentState));
 
     const authToken = localStorage.getItem('authToken'); // Fetch the token from localStorage
 

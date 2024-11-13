@@ -23,6 +23,7 @@ const FeedPage: React.FC = () => {
         });
         if (response.message == 'success') {
           setFeedItems(response.posts);
+          // console.log(response);
         } else {
           setError(response.message);
         }
