@@ -13,12 +13,12 @@ const Login: React.FC = () => {
   const [message, setMessage] = useState('');
   const [emailError, setEmailError] = useState('');
   const [redirectPath, setRedirectPath] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false); // Track loading state
 
   useEffect(() => {
     setRedirectPath(localStorage.getItem('redirectPath'));
   }, []);
 
-  // Email validation function for real-time checking
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -28,17 +28,13 @@ const Login: React.FC = () => {
     }
   };
 
-  // Handle login form submission
   const handleLogin = async () => {
     if (!email || !password) {
       setMessage('Email and Password are required');
       return;
     }
 
-    // localStorage.setItem('authToken', 'jkaskjsdkjsa');
-    // localStorage.setItem('loggedIn', 'true');
-    // navigate('/profile');
-
+    setIsLoading(true); // Start loading state
     try {
       const data = await apiFetch('/account/login', {
         method: 'POST',
@@ -52,6 +48,8 @@ const Login: React.FC = () => {
         } else {
           navigate('/profile');
         }
+      } else {
+        setMessage(data.message);
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -60,6 +58,7 @@ const Login: React.FC = () => {
         setMessage('An unexpected error occurred');
       }
     }
+    setIsLoading(false); // Stop loading state
   };
 
   return (
@@ -92,9 +91,33 @@ const Login: React.FC = () => {
 
         <button
           onClick={handleLogin}
-          className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+          className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors flex justify-center items-center"
+          disabled={isLoading}
         >
-          Login
+          {isLoading ? (
+            <svg
+              className="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8z"
+              ></path>
+            </svg>
+          ) : (
+            'Login'
+          )}
         </button>
 
         <Message

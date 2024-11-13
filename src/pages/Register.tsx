@@ -21,7 +21,6 @@ const Register: React.FC = () => {
     setRedirectPath(localStorage.getItem('redirectPath'));
   }, []);
 
-  // Email validation function for real-time checking
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
@@ -31,7 +30,6 @@ const Register: React.FC = () => {
     }
   };
 
-  // Validate password fields for non-empty values
   const validatePasswordFields = () => {
     if (!password || !confirmPassword) {
       setPasswordError('Password and Confirm Password are required');
@@ -47,26 +45,22 @@ const Register: React.FC = () => {
 
   const handleRegister = async () => {
     setIsLoading(true);
-    // Validate required fields before proceeding with API call
     if (!fullName || !email || !password || !confirmPassword) {
       setMessage('All fields are required');
       setIsLoading(false);
       return;
     }
 
-    // Validate password fields
     if (!validatePasswordFields()) {
       setIsLoading(false);
       return;
     }
 
-    // Proceed with registration API call
     try {
       const data = await apiFetch(`/account/register`, {
         method: 'POST',
         body: JSON.stringify({ email, name: fullName, password }),
       });
-      console.log(data);
       if (data.message === 'success') {
         setIsLoading(false);
         if (redirectPath) {
@@ -85,9 +79,8 @@ const Register: React.FC = () => {
       } else {
         setMessage('An error occurred');
       }
+      setIsLoading(false);
     }
-
-    // setMessage(data.message || 'Registration successful!');
   };
 
   const handleGoogleSignIn = () => {
@@ -140,10 +133,33 @@ const Register: React.FC = () => {
 
         <button
           onClick={handleRegister}
-          className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+          className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors flex justify-center items-center"
           disabled={isLoading}
         >
-          {isLoading ? 'Loading' : 'Register'}
+          {isLoading ? (
+            <svg
+              className="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v8z"
+              ></path>
+            </svg>
+          ) : (
+            'Register'
+          )}
         </button>
 
         {message && <p className="mt-4 text-center text-red-500">{message}</p>}
