@@ -1,4 +1,4 @@
-import { IData } from "./User";
+import { IData } from './User';
 
 export interface ILike {
   user: string;
@@ -26,6 +26,16 @@ export interface IPost {
   contentType: ContentType;
   user: string;
   comments: IComment[];
+  likes: ILike[];
+}
+
+export interface IPostCom {
+  _id: string;
+  title: string;
+  body: string;
+  contentType: ContentType;
+  user: string;
+  comments: string;
   likes: ILike[];
 }
 

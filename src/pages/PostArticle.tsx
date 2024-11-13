@@ -4,6 +4,8 @@ import { EditorState, convertToRaw } from 'draft-js';
 import TitleInput from '../components/TitleInput';
 import RichTextEditor from '../components/RichTextEditor';
 import Navbar from '../components/Navbar';
+import { ContentType } from '../types/Post';
+import { apiFetch } from '../utils/api';
 
 const PostArticle: React.FC = () => {
   const [title, setTitle] = useState('');
@@ -14,14 +16,22 @@ const PostArticle: React.FC = () => {
     const contentState = editorState.getCurrentContent();
     const rawContent = convertToRaw(contentState);
 
+    const authToken = localStorage.getItem('authToken'); // Fetch the token from localStorage
+
     // Send title and raw content to backend
-    const response = await fetch('/api/post-article', {
+    const response = await apiFetch('/post/create-post', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title, content: rawContent }),
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify({
+        title,
+        body: rawContent,
+        contentType: ContentType.ARTICLE,
+      }),
     });
 
-    if (response.ok) {
+    if (response.message == 'success') {
       alert('Article posted successfully!');
     } else {
       alert('Failed to post the article.');
