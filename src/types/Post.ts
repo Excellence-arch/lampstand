@@ -27,6 +27,7 @@ export interface IPost {
   user: string;
   comments: IComment[];
   likes: ILike[];
+  slug: string;
 }
 
 export interface IPostCom {
@@ -37,6 +38,7 @@ export interface IPostCom {
   user: string;
   comments: string;
   likes: ILike[];
+  slug: string;
 }
 
 export interface postResponse extends IData {

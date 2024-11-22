@@ -12,11 +12,9 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [redirectPath, setRedirectPath] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false); // Track loading state
 
   useEffect(() => {
-    setRedirectPath(localStorage.getItem('redirectPath'));
   }, []);
 
   const validateEmail = (email: string) => {
@@ -42,10 +40,12 @@ const Login: React.FC = () => {
       });
       if (data.message === 'success') {
         localStorage.setItem('authToken', data.token);
+        const redirectPath = localStorage.getItem('redirectPath') || null;
         if (redirectPath) {
           localStorage.removeItem('redirectPath');
           navigate(`${redirectPath}`);
         } else {
+          console.log("hi")
           navigate('/profile');
         }
       } else {

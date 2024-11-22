@@ -58,7 +58,7 @@ const App: React.FC = () => {
           element={<Feed />}
         />
         <Route
-          path="/feed/:id"
+          path="/post/:slug"
           element={<ArticlePage />}
         />
         <Route
@@ -88,7 +88,7 @@ const App: React.FC = () => {
         {/* Redirect any unknown routes back to the landing page */}
         <Route
           path="*"
-          element={<Navigate to="/" />}
+          element={<Navigate to="/feed" />}
         />
       </Routes>
     </div>
