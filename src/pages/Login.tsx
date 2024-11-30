@@ -39,27 +39,36 @@ const Login: React.FC = () => {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
-      if (data.message === 'success') {
-        localStorage.setItem('authToken', data.token);
-        const redirectPath = localStorage.getItem('redirectPath') || null;
-        if (redirectPath) {
-          localStorage.removeItem('redirectPath');
-          navigate(`${redirectPath}`);
-        } else {
-          console.log('hi');
-          navigate('/profile');
-        }
-      } else {
+      if (data.message !== 'success') {
+        setIsLoading(false);
         setMessage(data.message);
+        // const redirectPath = localStorage.getItem('redirectPath') || null;
+        // if (redirectPath !== null) {
+        //   localStorage.removeItem('redirectPath');
+        //   navigate(`${redirectPath}`);
+        // } else {
+        //   // console.log('hi');
+        //   navigate('/profile');
+        // }
+      } else {
+        // localStorage.setItem('authToken', data.token);
+        localStorage.authToken = data.token;
+        setIsLoading(false);
+        // navigate('/profile');
+        window.location.href = '/profile';
+        console.log('navigation executed');
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
+        setIsLoading(false);
         setMessage(error.message);
       } else {
+        setIsLoading(false);
         setMessage('An unexpected error occurred');
       }
     }
-    setIsLoading(false); // Stop loading state
+    // Stop loading state
+    // navigate('/profile');
   };
 
   return (
