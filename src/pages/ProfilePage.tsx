@@ -13,6 +13,7 @@ const ProfilePage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    document.title = 'Lampstand | Profile';
     const fetchUserData = async () => {
       const authToken = localStorage.getItem('authToken'); // Fetch the token from localStorage
 

@@ -1,6 +1,5 @@
-// src/App.tsx
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, Navigate, useNavigate, Link } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Feed from './pages/Feed';
 import Activity from './pages/Activity';
@@ -11,17 +10,15 @@ import Profile from './pages/ProfilePage';
 import ArticlePage from './pages/ArticlePage';
 
 const App: React.FC = () => {
-  // Simulate a simple auth check (replace with real authentication check)
+  // Determine authentication status based on localStorage
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(
     !!localStorage.getItem('authToken')
   );
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   // Update isAuthenticated whenever the authToken changes in localStorage
   useEffect(() => {
     const handleStorageChange = () => {
-      setIsAuthenticated(Boolean(localStorage.getItem('authToken')));
-      setLoggedIn(!!localStorage.getItem('loggedIn'));
+      setIsAuthenticated(!!localStorage.getItem('authToken'));
     };
 
     // Listen for changes to localStorage
@@ -41,10 +38,17 @@ const App: React.FC = () => {
   return (
     <div className="font-sans text-gray-900">
       <Routes>
+        {/* Redirect logged-in users to /feed */}
         <Route
-          path={'/'}
-          element={loggedIn ? <Navigate to="/feed" /> : <Landing />}
+          path="/"
+          element={isAuthenticated ? <Navigate to="/feed" /> : <Landing />}
         />
+
+        <Route
+          path="/feed"
+          element={<Feed />}
+        />
+
         <Route
           path="/profile"
           element={
@@ -53,14 +57,12 @@ const App: React.FC = () => {
             </PrivateRoute>
           }
         />
-        <Route
-          path="/feed"
-          element={<Feed />}
-        />
+
         <Route
           path="/post/:slug"
           element={<ArticlePage />}
         />
+
         <Route
           path="/activity"
           element={
@@ -69,6 +71,7 @@ const App: React.FC = () => {
             </PrivateRoute>
           }
         />
+
         <Route
           path="/post-article"
           element={
@@ -77,15 +80,18 @@ const App: React.FC = () => {
             </PrivateRoute>
           }
         />
+
         <Route
           path="/register"
           element={<Register />}
         />
+
         <Route
           path="/login"
           element={<Login />}
         />
-        {/* Redirect any unknown routes back to the landing page */}
+
+        {/* Redirect any unknown routes to /feed */}
         <Route
           path="*"
           element={<Navigate to="/feed" />}

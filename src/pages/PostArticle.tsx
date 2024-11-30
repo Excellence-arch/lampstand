@@ -1,5 +1,5 @@
 // src/pages/PostArticle.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { EditorState, convertToRaw } from 'draft-js';
 import TitleInput from '../components/TitleInput';
 import RichTextEditor from '../components/RichTextEditor';
@@ -11,6 +11,10 @@ const PostArticle: React.FC = () => {
   const [title, setTitle] = useState('');
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [loading, setLoading] = useState(false); // Loading state
+
+  useEffect(() => {
+    document.title = 'Lampstand | Create Post'
+  })
 
   const handleSubmit = async () => {
     setLoading(true); // Start loading

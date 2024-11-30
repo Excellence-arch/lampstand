@@ -15,6 +15,7 @@ const Login: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false); // Track loading state
 
   useEffect(() => {
+    document.title = 'Lampstand | Login';
   }, []);
 
   const validateEmail = (email: string) => {
@@ -45,7 +46,7 @@ const Login: React.FC = () => {
           localStorage.removeItem('redirectPath');
           navigate(`${redirectPath}`);
         } else {
-          console.log("hi")
+          console.log('hi');
           navigate('/profile');
         }
       } else {

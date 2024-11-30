@@ -18,6 +18,7 @@ const Register: React.FC = () => {
   const [redirectPath, setRedirectPath] = useState<string | null>(null);
 
   useEffect(() => {
+    document.title = 'Lampstand | Register';
     setRedirectPath(localStorage.getItem('redirectPath'));
   }, []);
 

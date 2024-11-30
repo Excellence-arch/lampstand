@@ -10,6 +10,7 @@ const FeedPage: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
+    document.title = 'Lampstand | Feed';
     setLoggedIn(!!localStorage.getItem('loggedIn'));
     const getPosts = async () => {
       try {
@@ -48,7 +49,10 @@ const FeedPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {feedItems.length > 0 ? (
               feedItems.map((item: IPostCom) => (
-                <FeedItem key={item._id} content={item} />
+                <FeedItem
+                  key={item._id}
+                  content={item}
+                />
               ))
             ) : (
               <div className="text-center text-gray-600 col-span-full py-6">
